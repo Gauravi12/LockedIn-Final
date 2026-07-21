@@ -1,0 +1,447 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    margin:0;
+    padding:0;
+    background:none;   /* match your paper color instead of white */
+}
+
+body{
+    width:400px;
+    margin:0;
+    border-radius:20px;
+    padding:0;
+    background: #27403C;
+    overflow:hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.popup{
+    width:400px;
+    position:relative;
+    background: transparent;
+}
+
+/* ================= DASHBOARD BACKGROUND ================= */
+
+.dashboard-container{
+    margin-top:30px;
+    width:100%;
+    background:#FFF5EB;
+    background-image:
+            linear-gradient(#CEC8B7 1px, transparent 1px),
+            linear-gradient(90deg,#CEC8B7 1px, transparent 1px);
+    background-size:20px 20px;
+    padding:25px;
+    border-radius:20px;
+    padding-top:50px;
+    position:relative;
+    overflow:visible;      /* was hidden — this was clipping the cat/badge stickers */
+}
+
+/* ================= RIBBON ================= */
+
+.ribbon-container{
+    position:absolute;
+    left:50%;
+    top:-30px;
+    transform:translateX(-50%);
+    z-index:100;
+}
+
+.ribbon{
+    width:280px;
+    filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.25));   /* was way too dark/offset */
+    display:block;
+}
+
+.logo-text{
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%) rotate(-3deg);
+    font-family:"Comic Sans MS", "Figma Hand", cursive;
+    font-weight:bold;
+    font-size:30px;
+    color:#3B2B26;
+    white-space:nowrap;
+    pointer-events:none;
+    letter-spacing: 1px;
+}
+
+/* ================= LOGIN / REGISTER ================= */
+
+#loginSection:not([hidden]), #registerSection:not([hidden]){
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    position: relative;
+    z-index: 2;
+}
+
+input{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+    background: #fff;
+}
+
+button{
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight: 600;
+}
+
+p{
+    text-align:center;
+}
+
+a{
+    text-decoration:none;
+    color:#3B2B26;
+    font-weight:bold;
+}
+
+/* ================= WELCOME SECTION ================= */
+
+.welcome-section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+    position: relative;
+    z-index: 2;
+}
+
+#welcomeUser{
+    font-size:20px;
+    font-weight:bold;
+    color:#2B2410;
+    font-family: "Comic Sans MS", cursive;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.3;
+    background-image: linear-gradient(#F5EA9E, #F5EA9E);
+    background-repeat: no-repeat;
+    background-size: 100% 60%;
+    background-position: 0 85%;
+}
+
+.status-section{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.status-dot{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:#ffffff;
+    border:1px solid #000000;
+    display:inline-block;
+}
+
+.status-label{
+    font-size:16px;
+    font-family: "Comic Sans MS", cursive;
+    font-weight:600;
+    color:#3B2B26;
+}
+
+#status{
+    font-size:16px;
+    font-family: "Comic Sans MS", cursive;
+    font-weight:600;
+    color:#3B2B26;
+}
+
+/* ================= ADD TASK ================= */
+
+.task-input-section{
+    display:flex;
+    margin-top: -10px;
+    gap:8px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+#taskInput{
+    flex:1;
+    background:#D5DEE5;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    filter: drop-shadow(5px 4px 1px rgba(79,79,79,0.7));
+    padding: 6px 14px;
+    font-style: italic;
+    color:#3B2B26;
+}
+
+#addTaskBtn{
+    width:42px;
+    border:1px solid #000000;
+    background:#D5DEE5;
+    color:#000000;
+    filter: drop-shadow(5px 4px 1px rgba(79,79,79,0.7));
+    border-radius:8px;
+    font-size:18px;
+    line-height:1;
+    padding: 6px 0;
+}
+
+/* ================= NOTEBOOK / TASK CARD ================= */
+
+.notebook-wrapper{
+    position: relative;
+    margin-top: 40px;
+}
+
+.notebook-section{
+    background:#E4D4E1;
+    border:1px solid #000000;
+    border-radius:12px;
+    padding:38px 20px 20px 20px;
+    position:relative;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    z-index: 2;              /* box sits ABOVE the cat */
+    margin-top: 34px;
+    min-height: 260px;
+}
+
+.notebook-header{
+    position:absolute;
+    top:-24px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    z-index:5;
+}
+
+.notebook-clip{
+    width:70px;
+    position: relative;
+    z-index: 2;
+    top: -20px;               /* small negative value moves it up */
+    filter: drop-shadow(3px -2px 1px rgba(79,79,79,0.7));
+}
+
+.notebook-title{
+    background:#E6D98C;
+    color:#000000;
+    font-weight:bold;
+    padding:6px 15px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    filter: drop-shadow(4px 4px 1.5px rgba(79,79,79,0.7));
+    font-family: "Comic Sans MS", cursive;
+    transform: rotate(3deg);
+    margin-top: -38px;
+}
+
+.task-scroll{
+    height:200px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:6px;
+}
+
+#taskList{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+.task-scroll::-webkit-scrollbar{
+    width:8px;
+}
+
+.task-scroll::-webkit-scrollbar-track{
+    background:#d8c9d7;
+    border-radius:10px;
+}
+
+.task-scroll::-webkit-scrollbar-thumb{
+    background:#9c7b94;
+    border-radius:10px;
+}
+
+.task-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-bottom:2px dashed #3B2B26;
+    padding-bottom:8px;
+}
+
+.task-item input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    border:2px solid #3B2B26;
+    border-radius:4px;
+    accent-color:#3B2B26;
+    background:#fff;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.task-item .task-line{
+    flex:1;
+    height:0;
+    border-bottom:1px dashed #3B2B26;
+}
+
+.task-item .task-text{
+    flex:1;
+    color:#3B2B26;
+    font-family:"Comic Sans MS", cursive;
+    font-size:16px;
+}
+
+/* ================= STICKERS ================= */
+
+.sticker{
+    position:absolute;
+    pointer-events:none;
+    z-index:4;
+}
+
+.sticker-evil-eye{
+    width:70px;
+    top:-30px;              /* moved down, away from clip/cat */
+    left:-16px;
+    transform: rotate(-10deg);
+    filter: drop-shadow(3px 4px 1px rgba(79,79,79,0.7));
+}
+
+.sticker-cat{
+    width:100px;
+    top:-65px;
+    right:10px;
+    filter: drop-shadow(5px 4px 1px rgba(79,79,79,0.7));
+    z-index:1;
+}
+
+.sticker-clover{
+    width:120px;
+    bottom:-60px;
+    left:-40px;             /* stays low, evil eye is now higher up — no more collision */
+    transform: rotate(-15deg);
+    filter: drop-shadow(3px 4px 1px rgba(79,79,79,0.7));
+}
+
+.sticker-badge{
+    width:80px;
+    bottom:-24px;
+    right:-10px;             /* pulled in slightly so it doesn't get cut by popup edge */
+    transform: rotate(6deg);
+    filter: drop-shadow(3px 4px 1px rgba(79,79,79,0.7));
+}
+
+/* ================= SESSION CONTROLS ================= */
+
+/* ================= SESSION CONTROLS ================= */
+
+#sessionControls{
+    margin-top:20px;
+    margin-bottom:-15px;
+    position:relative;
+    z-index:2;
+}
+
+/* ---------- Start Button ---------- */
+
+#startBtn{
+    width:100px;
+    height:40px;
+    font-weight: 300;   /* light (only if the font supports it) */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin:10px auto;
+    padding:0;
+
+    background:#BE8A63;
+    color:#000;
+
+    font-size:18px;
+    font-family:"Comic Sans MS", cursive;
+
+    border:1px solid #000;
+    border-radius:16px;
+
+    filter:drop-shadow(4px 4px 1px rgba(79,79,79,.7));
+}
+
+/* ---------- Active / Paused Layout ---------- */
+
+#activeLayout:not([hidden]),
+#pausedLayout:not([hidden]){
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:35px;          /* Increase or decrease this */
+    margin:10px 0;
+}
+
+/* ---------- Pause / Resume / End ---------- */
+
+#pauseBtn,
+#resumeBtn,
+#endBtn,
+#pausedEndBtn{
+
+    width:100px;
+    height:40px;
+    font-weight: 300;   /* light (only if the font supports it) */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:0;
+
+    background:#BE8A63;
+    color:#000;
+
+    font-size:18px;
+    font-family:"Comic Sans MS", cursive;
+
+    border:1px solid #000;
+    border-radius:16px;
+
+    filter:drop-shadow(4px 4px 1px rgba(79,79,79,.7));
+}
+
+/* ================= LOGOUT ================= */
+
+#logoutBtn{
+    display: block;
+    width: fit-content;
+    margin: 5px auto 0 auto;
+    margin-top: 30px;
+    margin-bottom: -10px;
+    background:#E5E3CA;
+    color:#000000;
+    border:1px solid #000000;
+    border-radius:10px;
+    font-size:10px;
+    filter: drop-shadow(4px 4px 1px rgba(79,79,79,0.7));
+    padding: 10px 15px;
+}
+
+[hidden]{
+    display:none !important;
+}

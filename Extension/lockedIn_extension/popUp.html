@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LockedIn</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+
+<div class = "popup">
+
+    <!-- Ribbon -->
+    <div class="ribbon-container">
+        <img src="assets/ribbon.png" class="ribbon" alt="Ribbon">
+        <h1 class="logo-text">LockedIn</h1>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard-container">
+
+        <!-- ================= LOGIN ================= -->
+        <div id="loginSection">
+            <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email"
+            >
+
+            <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+            >
+
+            <button id="loginBtn">
+                Login
+            </button>
+
+            <p>
+                Don't have an account?
+                <a href="#" id="showRegister">
+                    Register
+                </a>
+            </p>
+
+        </div>
+
+
+        <!-- ================= REGISTER ================= -->
+
+        <div id="registerSection" hidden>
+
+            <h2>Create Account</h2>
+
+            <input
+                    type="text"
+                    id="registerName"
+                    placeholder="First Name"
+            >
+
+            <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Email"
+            >
+
+            <input
+                    type="email"
+                    id="registerParentEmail"
+                    placeholder="Parent Email"
+            >
+
+            <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Password"
+            >
+
+            <button id="registerBtn">
+                Register
+            </button>
+
+            <p>
+                Already have an account?
+                <a href="#" id="showLogin">
+                    Login
+                </a>
+            </p>
+
+        </div>
+
+        <!-- ================= DASHBOARD ================= -->
+        <div id="dashboardSection" hidden>
+
+            <!-- ================= WELCOME SECTION ================= -->
+            <div class="welcome-section">
+                <p id="welcomeUser">Welcome, Gauravi !!</p>
+
+                <div class="status-section">
+                    <span id="statusDot" class="status-dot"></span>
+                    <span class="status-label">Status :</span>
+                    <span id="status">Not Started</span>
+                </div>
+            </div>
+
+            <!-- ================= ADD TASK ================= -->
+            <div class="task-input-section">
+                <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter a task...">
+
+                <button id="addTaskBtn">+</button>
+            </div>
+
+            <!-- ================= NOTEBOOK / TASK LIST ================= -->
+            <div class="notebook-wrapper">
+
+                <img src="assets/cat.png" class="sticker sticker-cat" alt="Cat">
+
+                <div class="notebook-section">
+
+                    <img src="assets/evil eye.png" class="sticker sticker-evil-eye" alt="Evil Eye">
+
+                    <div class="notebook-header">
+                        <img src="assets/red clip.png" class="notebook-clip" alt="Clip">
+                        <span class="notebook-title">Tasks</span>
+                    </div>
+
+                    <div class="task-scroll">
+                        <div id="taskList"></div>
+                    </div>
+
+                    <img src="assets/claver.png" class="sticker sticker-clover" alt="Clover">
+                    <img src="assets/batch.png" class="sticker sticker-badge" alt="Badge">
+
+                </div>
+
+            </div>
+
+            <!-- ================= SESSION CONTROLS ================= -->
+            <div id="sessionControls">
+
+                <!-- ---------- NO SESSION ---------- -->
+                <div id="startLayout">
+                    <button id="startBtn">Start</button>
+                </div>
+
+                <!-- ---------- ACTIVE SESSION ---------- -->
+                <div id="activeLayout" hidden>
+                    <button id="pauseBtn">Pause</button>
+                    <button id="endBtn">End</button>
+                </div>
+
+                <!-- ---------- PAUSED SESSION ---------- -->
+                <div id="pausedLayout" hidden>
+                    <button id="resumeBtn">Resume</button>
+                    <button id="pausedEndBtn">End</button>
+                </div>
+
+            </div>
+
+            <button id="logoutBtn">Log Out</button>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="popup.js"></script>
+
+</body>
+
+</html>

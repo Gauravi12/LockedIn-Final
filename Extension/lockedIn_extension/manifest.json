@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "LockedIn Assistant",
+  "version": "1.0",
+  "description": "Stay locked in. Track tasks, sessions, and block distractions.",
+
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "action": {
+    "default_popup": "popUp.html"
+  },
+
+  "background": {
+    "service_worker": "backGround.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["roastPopUp.css"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["roastPopUp.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
