@@ -79,7 +79,7 @@ async function checkFocusSession() {
 
 
         const response = await fetch(
-            "http://localhost:8080/session/status",
+            "https://lockedin-6k2g.onrender.com/session/status",
             {
                 method:"GET",
                 headers:{
@@ -143,7 +143,7 @@ function collectPageData() {
 
 async function classifyContent(pageData) {
     const result = await chrome.storage.local.get(["token"]);
-    const response = await fetch("http://localhost:8080/content/check",
+    const response = await fetch("https://lockedin-6k2g.onrender.com/content/check",
             {
                 method:"POST",
                 headers:{"Content-Type":"application/json", "Authorization":"Bearer " + result.token},
@@ -168,7 +168,7 @@ async function handleClassification(response) {
 async function addDistraction() {
     const result = await chrome.storage.local.get(["token"]);
 
-    await fetch("http://localhost:8080/session/add/distraction", {
+    await fetch("https://lockedin-6k2g.onrender.com/session/add/distraction", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

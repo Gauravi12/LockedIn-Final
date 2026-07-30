@@ -167,16 +167,15 @@ public class PopUpService {
             }
         });
 
-        here.addActionListener(e -> {
-            timer.stop();
-            answered[0] = true;
-            dialog.dispose();
-        });
+        here.addActionListener(e -> {timer.stop();answered[0] = true;dialog.dispose();});
 
         timer.start();
 
         dialog.pack();
         dialog.setLocationRelativeTo(null);
+        dialog.setAlwaysOnTop(true);
+        dialog.toFront();
+        dialog.requestFocus();
         dialog.setVisible(true);
 
         return answered[0];
