@@ -4,6 +4,8 @@
 
 Only the latest commit on `main` is supported. This is an alpha project; there are no long-term support branches.
 
+The reference deployment at `https://lockedin-6k2g.onrender.com` is a shared demo maintained by the project author. It is not a private instance. It has no rate limiting, so anyone who finds it can create accounts and spend the maintainer's Groq quota. Do not use it for sensitive data.
+
 ## Reporting a vulnerability
 
 Please **do not open a public issue** for an exploitable bug. Email the maintainer through the contact on <https://github.com/Gauravi12> or use GitHub's private vulnerability reporting on the repository.

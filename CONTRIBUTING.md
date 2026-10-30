@@ -10,7 +10,7 @@ Thanks for looking. This is an early, solo-maintained project, so small and focu
 
 ## What the project uses
 
-- **Backend:** Java 21, Spring Boot 3.5, Spring Security, Spring Data JPA, Spring AI, MySQL 8, Maven wrapper.
+- **Backend:** Java 21, Spring Boot 3.5, Spring Security, Spring Data JPA, Spring AI, PostgreSQL 14+ (or Neon), Maven wrapper.
 - **Extension:** plain JavaScript, Chrome Manifest V3. No build step.
 - **Companion:** Java 23, Maven, JNativeHook, JNA, Swing. Windows only.
 
@@ -18,7 +18,7 @@ Please keep new backend and companion code in Java/Spring. Do not introduce a se
 
 ## Run it locally
 
-See [Quick start](README.md#quick-start). At minimum you need JDK 21, MySQL 8, a Groq API key, and the environment variables from `.env.example`.
+See [Quick start](README.md#quick-start). At minimum you need JDK 21, PostgreSQL 14+ (or a free Neon database), a Groq API key, and the environment variables from `.env.example`.
 
 The companion needs JDK 23 because its `pom.xml` targets that version.
 

@@ -18,7 +18,7 @@ public class CompanionHttpServer {
         server.createContext("/token", exchange -> {
             InputStream inputStream = exchange.getRequestBody();
             String token = new String(inputStream.readAllBytes());
-            System.out.println("Received JWT = " + token);
+//            System.out.println("Received JWT = " + token);
             backendClient.setJwtToken(token);
             String response = "JWT Saved";
             exchange.sendResponseHeaders(200, response.length());

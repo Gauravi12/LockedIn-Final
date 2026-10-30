@@ -21,7 +21,7 @@ public class DailyReportScheduler {
         this.emailService = emailService;
     }
 
-    @Scheduled(cron = "0 0 23 * * *")
+    @Scheduled(cron = "0 35 0 * * *")
     public void sendDailyReport(){
         List<User> users = userRepo.findAll();
         for(User user : users){

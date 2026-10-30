@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return;
     }
 
-    const url = "http://localhost:8080" + message.path;
+    const url = "https://lockedin-6k2g.onrender.com" + message.path;
 
     fetch(url, {
         method: message.method || "GET",

@@ -2,6 +2,8 @@
 
 LockedIn is a self-hosted focus tracker. When you run it, **you** are the operator of the database. This document describes what the code collects and where it goes.
 
+**Hosted reference deployment:** the version at `https://lockedin-6k2g.onrender.com` is operated by the maintainer. If you use it, your account and activity data are stored in the maintainer's database, AI calls use the maintainer's Groq quota, and the daily report is sent from the maintainer's Gmail account. It is a shared demo; do not put private data into it.
+
 This is an alpha project. It has not been reviewed by a lawyer or a data protection authority.
 
 ## What is collected
@@ -20,7 +22,7 @@ The companion records **when** you used the keyboard or mouse. It does not recor
 
 ## Where it is stored
 
-- Account, sessions, tasks, and blocked attempts are stored in the **MySQL database you configure**. The default is `localhost:3306/lockedin`.
+- Account, sessions, tasks, and blocked attempts are stored in the **PostgreSQL database you configure** through `DB_URL` (local, Neon, or another provider).
 - The JWT is stored in `chrome.storage.local` in the browser and in memory in the companion.
 - The companion does not write activity data to disk. It keeps state in memory.
 

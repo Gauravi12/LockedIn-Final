@@ -21,7 +21,7 @@ public class BackendClient {
 
     public String getSessionStatus(){
         try {
-            System.out.println("JWT = " + jwtToken);
+//            System.out.println("JWT = " + jwtToken);
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(BACKEND_URL + "session/status"))
                     .header("Authorization", "Bearer " + jwtToken)
@@ -112,6 +112,7 @@ public class BackendClient {
                     .header("Authorization", "Bearer " + jwtToken)
                     .POST(HttpRequest.BodyPublishers.noBody())
                     .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         }catch (Exception e){
             e.printStackTrace();
         }

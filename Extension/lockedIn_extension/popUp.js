@@ -77,7 +77,7 @@ async function login() {
     const password = loginPassword.value;
 
     try {
-        const response = await fetch("http://localhost:8080/auth/login", {
+        const response = await fetch("https://lockedin-6k2g.onrender.com/auth/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({email: email, password: password})
@@ -116,7 +116,7 @@ async function register() {
     const email = registerEmail.value;
     const parentEmail = registerParentEmail.value;
     const password = registerPassword.value;
-    const response = await fetch("http://localhost:8080/auth/register", {
+    const response = await fetch("https://lockedin-6k2g.onrender.com/auth/register", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({name: name, email: email, password: password, parentEmail: parentEmail})
@@ -133,7 +133,7 @@ async function register() {
 }
 
 async function logout() {
-    await fetch("http://localhost:8080/auth/logOut", {
+    await fetch("https://lockedin-6k2g.onrender.com/auth/logOut", {
         method: "POST",
         headers: await getAuthHeaders()
     });
@@ -150,7 +150,7 @@ async function logout() {
 }
 
 async function loadSessionStatus(){
-    const response = await fetch("http://localhost:8080/session/status", {method: "GET" , headers: await getAuthHeaders()});
+    const response = await fetch("https://lockedin-6k2g.onrender.com/session/status", {method: "GET" , headers: await getAuthHeaders()});
     const state = await response.text();
     updateSessionUI(state);
 }
@@ -189,7 +189,7 @@ function updateSessionUI(state){
 }
 
 async function startSession(){
-    const response = await fetch("http://localhost:8080/session/start", {method: "POST" , headers: await getAuthHeaders()});
+    const response = await fetch("https://lockedin-6k2g.onrender.com/session/start", {method: "POST" , headers: await getAuthHeaders()});
     if (!response.ok) {
         alert("Failed to start session");
         return;
@@ -198,7 +198,7 @@ async function startSession(){
 }
 
 async function pauseSession(){
-    const response = await fetch("http://localhost:8080/session/pause", {method: "POST" , headers: await getAuthHeaders()});
+    const response = await fetch("https://lockedin-6k2g.onrender.com/session/pause", {method: "POST" , headers: await getAuthHeaders()});
     if (!response.ok) {
         alert("Failed to pause session");
         return;
@@ -207,7 +207,7 @@ async function pauseSession(){
 }
 
 async function resumeSession(){
-    const response = await fetch("http://localhost:8080/session/resume", {method: "POST" , headers: await getAuthHeaders()});
+    const response = await fetch("https://lockedin-6k2g.onrender.com/session/resume", {method: "POST" , headers: await getAuthHeaders()});
     if (!response.ok) {
         alert("Failed to resume session");
         return;
@@ -216,7 +216,7 @@ async function resumeSession(){
 }
 
 async function endSession(){
-    const response = await fetch("http://localhost:8080/session/end", {method: "POST" , headers: await getAuthHeaders()});
+    const response = await fetch("https://lockedin-6k2g.onrender.com/session/end", {method: "POST" , headers: await getAuthHeaders()});
     if (!response.ok) {
         alert("Failed to end session");
         return;
@@ -225,7 +225,7 @@ async function endSession(){
 }
 
 async function loadTask(){
-    const response = await fetch("http://localhost:8080/task/remaining", {method: "GET" , headers: await getAuthHeaders()});
+    const response = await fetch("https://lockedin-6k2g.onrender.com/task/remaining", {method: "GET" , headers: await getAuthHeaders()});
     if (!response.ok) {
         alert("Failed to load tasks");
         return;
@@ -239,7 +239,7 @@ async function addTask() {
     if (title === "") {
         return;
     }
-    await fetch("http://localhost:8080/task/add", {
+    await fetch("https://lockedin-6k2g.onrender.com/task/add", {
         method: "POST",
         headers: await getAuthHeaders(),
         body: JSON.stringify({
@@ -252,12 +252,12 @@ async function addTask() {
 
 async function completeTask(id){
     console.log("Completing task:", id);
-    await fetch(`http://localhost:8080/task/complete/${id}`, {method: "PUT" ,  headers: await getAuthHeaders()});
+    await fetch(`https://lockedin-6k2g.onrender.com/task/complete/${id}`, {method: "PUT" ,  headers: await getAuthHeaders()});
     await loadTask();
 }
 
 async function deleteTask(id){
-    await fetch(`http://localhost:8080/task/delete/${id}`, {method: "DELETE" ,  headers: await getAuthHeaders()});
+    await fetch(`https://lockedin-6k2g.onrender.com/task/delete/${id}`, {method: "DELETE" ,  headers: await getAuthHeaders()});
     await loadTask();
 }
 
