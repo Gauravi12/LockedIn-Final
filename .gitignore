@@ -1,0 +1,36 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Backend / Maven build output
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+
+# Desktop packaging output
+jpackage-output/
+installer/
+Setup/
+--type
+
+# IDE and editor folders
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

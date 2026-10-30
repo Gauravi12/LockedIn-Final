@@ -68,41 +68,41 @@ async function initializeLockedIn() {
     handleClassification(response);
 }
 
+
 async function checkFocusSession() {
     try {
         const result = await chrome.storage.local.get(["token"]);
 
         if (!result.token) {
-            console.log("No JWT found. User not logged in.");
-            return false;
+            console.log("No JWT found");
+            return null;
         }
 
+        const response = await chrome.runtime.sendMessage({
+            action: "API_REQUEST",
+            path: "/session/status",
+            method: "GET",
+            token: result.token
+        });
 
-        const response = await fetch(
-            "http://localhost:8080/session/status",
-            {
-                method:"GET",
-                headers:{
-                    "Authorization":"Bearer " + result.token
-                }
-            }
-        );
+        if (!response?.ok) {
+            console.log("SESSION API FAILURE DETAILS:", JSON.stringify(response, null, 2));
+            console.log("Token exists:", !!result.token);
+            return null;
+        }
 
-
-        const sessionState = await response.text();
+        const sessionState = String(response.data).trim();
 
         console.log("Backend Session State:", sessionState);
 
         return sessionState === "ACTIVE";
 
     } catch (error) {
-        console.error(
-            "Failed to check session:",
-            error
-        );
-        return false;
+        console.error("Session communication failed:", error);
+        return null;
     }
 }
+
 
 function collectPageData() {
     const hostname = window.location.hostname;
@@ -141,42 +141,66 @@ function collectPageData() {
     };
 }
 
+
 async function classifyContent(pageData) {
     const result = await chrome.storage.local.get(["token"]);
-    const response = await fetch("http://localhost:8080/content/check",
-            {
-                method:"POST",
-                headers:{"Content-Type":"application/json", "Authorization":"Bearer " + result.token},
-                body: JSON.stringify(pageData)});
 
-    if (!response.ok) {
-        throw new Error("Classification API failed");
+    const response = await chrome.runtime.sendMessage({
+        action: "API_REQUEST",
+        path: "/content/check",
+        method: "POST",
+        token: result.token,
+        body: pageData
+    });
+
+    if (!response?.ok) {
+        throw new Error(
+            response?.error || `API failed: ${response?.status}`
+        );
     }
-    return await response.json();
+
+    return typeof response.data === "string"
+        ? JSON.parse(response.data)
+        : response.data;
 }
+
 
 async function handleClassification(response) {
     console.log("Allowed:", response.allowed);
+
     if (response.allowed) {
         removePopup();
         return;
     }
-    await addDistraction();
-    injectRoastPopup(response);
+
+    try {
+        await addDistraction();
+    } catch (error) {
+        console.error("Distraction recording failed:", error);
+    }
+
+    await injectRoastPopup(response);
 }
+
 
 async function addDistraction() {
     const result = await chrome.storage.local.get(["token"]);
 
-    await fetch("http://localhost:8080/session/add/distraction", {
+    const response = await chrome.runtime.sendMessage({
+        action: "API_REQUEST",
+        path: "/session/add/distraction",
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + result.token
-        },
-        body: JSON.stringify(0)
+        token: result.token,
+        body: 0
     });
+
+    if (!response?.ok) {
+        console.error("Failed to add distraction:", response);
+    } else {
+        console.log("Distraction recorded successfully");
+    }
 }
+
 
 async function injectRoastPopup(response) {
     if (document.getElementById("lockedIn-overlay")) {
